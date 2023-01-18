@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProveedorCreateDlg" widgetVar="ProveedorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProveedorTitle}">
+            <h:form id="ProveedorCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_identificacion}" for="identificacion" />
+                        <p:inputText id="identificacion" value="#{proveedorController.selected.identificacion}" title="#{bundle.CreateProveedorTitle_identificacion}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_identificacion}"/>
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{proveedorController.selected.nombre}" title="#{bundle.CreateProveedorTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{proveedorController.selected.direccion}" title="#{bundle.CreateProveedorTitle_direccion}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_direccion}"/>
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{proveedorController.selected.correo}" title="#{bundle.CreateProveedorTitle_correo}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_correo}"/>
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_vehiculosDisponibles}" for="vehiculosDisponibles" />
+                        <p:inputText id="vehiculosDisponibles" value="#{proveedorController.selected.vehiculosDisponibles}" title="#{bundle.CreateProveedorTitle_vehiculosDisponibles}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_vehiculosDisponibles}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{proveedorController.create}" value="#{bundle.Save}" update="display,:ProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProveedorCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProveedorCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

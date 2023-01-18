@@ -19,21 +19,31 @@
                     <p:dataTable id="datalist" value="#{proveedorController.items}" var="item"
                                  selectionMode="single" selection="#{proveedorController.selected}"
                                  paginator="true"
+                                 paginatorPosition="bottom"
                                  rowKey="#{item.identificacion}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 widgetVar="tablaProveedoresBuscar"
+                                 filteredValue="#{proveedorController.buscarProveedor}"
                                  >
 
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Buscar:  " />
+                                <p:inputText id="globalFilter" onkeyup="PF('tablaProveedoresBuscar').filter()"
+                                             style="width:200px;" placeholder="Presiona una tecla" />
+                            </p:outputPanel>
+                        </f:facet>
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column filterBy="#{item.identificacion}" filterStyle="width: 100px; display: none; visibility: hidden;" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_identificacion}"/>
                             </f:facet>
                             <h:outputText value="#{item.identificacion}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.nombre}" filterStyle="width: 100px; display: none; visibility: hidden;" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_nombre}"/>
                             </f:facet>

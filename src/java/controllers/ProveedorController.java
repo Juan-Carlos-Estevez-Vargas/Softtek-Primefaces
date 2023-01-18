@@ -25,11 +25,20 @@ public class ProveedorController implements Serializable {
     @EJB
     private controllers.ProveedorFacade ejbFacade;
     private List<Proveedor> items = null;
+    private List<Proveedor> buscarProveedor = null;
     private Proveedor selected;
 
     public ProveedorController() {
     }
 
+    public List<Proveedor> getBuscarProveedor() {
+        return buscarProveedor;
+    }
+
+    public void setBuscarProveedor(List<Proveedor> buscarProveedor) {
+        this.buscarProveedor = buscarProveedor;
+    }
+    
     public Proveedor getSelected() {
         return selected;
     }
@@ -72,7 +81,7 @@ public class ProveedorController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-
+    
     public List<Proveedor> getItems() {
         if (items == null) {
             items = getFacade().findAll();

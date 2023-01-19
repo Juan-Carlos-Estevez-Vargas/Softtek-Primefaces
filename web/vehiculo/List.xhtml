@@ -19,15 +19,26 @@
                     <p:dataTable id="datalist" value="#{vehiculoController.items}" var="item"
                                  selectionMode="single" selection="#{vehiculoController.selected}"
                                  paginator="true"
+                                 paginatorPosition="bottom"
                                  rowKey="#{item.placa}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 widgetVar="tablaProveedoresBuscar"
+                                 filteredValue="#{vehiculoController.buscarVehiculo}"
                                  >
 
+                         <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Buscar:  " />
+                                <p:inputText id="globalFilter" onkeyup="PF('tablaProveedoresBuscar').filter()"
+                                             style="width:200px;" placeholder="Presiona una tecla" />
+                            </p:outputPanel>
+                        </f:facet>
+                        
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column filterBy="#{item.placa}" filterStyle="width: 100px; display: none; visibility: hidden;" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListVehiculoTitle_placa}"/>
                             </f:facet>
@@ -39,7 +50,7 @@
                             </f:facet>
                             <h:outputText value="#{item.modelo}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.idConductor}" filterStyle="width: 100px; display: none; visibility: hidden;" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListVehiculoTitle_idConductor}"/>
                             </f:facet>

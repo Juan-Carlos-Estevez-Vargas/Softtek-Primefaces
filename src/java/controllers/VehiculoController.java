@@ -24,7 +24,8 @@ public class VehiculoController implements Serializable {
 
     @EJB
     private controllers.VehiculoFacade ejbFacade;
-    private List<Vehiculo> items = null;
+    private List<Vehiculo> items = null;    
+    private List<Vehiculo> buscarVehiculo = null;
     private Vehiculo selected;
 
     public VehiculoController() {
@@ -32,6 +33,14 @@ public class VehiculoController implements Serializable {
 
     public Vehiculo getSelected() {
         return selected;
+    }
+
+    public List<Vehiculo> getBuscarVehiculo() {
+        return buscarVehiculo;
+    }
+
+    public void setBuscarVehiculo(List<Vehiculo> buscarVehiculo) {
+        this.buscarVehiculo = buscarVehiculo;
     }
 
     public void setSelected(Vehiculo selected) {

@@ -1,4 +1,4 @@
-# softtek primefaces
+# Softtek Primefaces
 Pequeña aplicación web desarrollada en JSF y Primefaces encargada de generar dos crud's como prueba técnica de la empresa Softtek
 
 ## Pasos para la ejecución del programa.
